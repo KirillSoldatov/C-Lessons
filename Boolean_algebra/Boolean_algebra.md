@@ -4,6 +4,7 @@
 
 #### **Negation** - Expresses "not" which means the opposite truth value
 
+```math
 \[
  \begin{matrix}
   p & \bar{p} \\
@@ -11,9 +12,11 @@
   F & T
  \end{matrix}
 \]
+```
 
 #### **Conjunction** - Expresses "and" which means both p and q must be true
 
+```math
 \[
  \begin{matrix}
   p & q & p \wedge q \\
@@ -23,9 +26,11 @@
   F & F & F
  \end{matrix}
 \]
+```
 
 #### **Disjunction** - Expresses "or" which means either p or q can be true or both
 
+```math
 \[
  \begin{matrix}
   p & q & p \wedge q \\
@@ -35,3 +40,4 @@
   F & F & F
  \end{matrix}
 \]
+```
