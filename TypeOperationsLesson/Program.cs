@@ -22,27 +22,21 @@ class Program
 	
 	static void CheckBodyMassIndex(double bmi)
 	{
-		switch (bmi)
+		if (bmi < 18.5)
 		{
-			case < 18.5:
-				Console.WriteLine($"bmi={bmi}, результат : недостающий вес");
-				break;
-				
-			case < 24.9:
-				Console.WriteLine($"bmi={bmi}, результат : норма");
-				break;
-			
-			case 25:
-				Console.WriteLine($"bmi={bmi}, результат : избыточный вес");
-				break;
-			
-			case < 29.9:
-				Console.WriteLine($"bmi={bmi}, результат : избыточный вес");
-				break;
-				
-			case >= 30:
-				Console.WriteLine($"bmi={bmi}, результат : ожирение");
-				break;
+			Console.WriteLine($"bmi={bmi}, результат : недостающий вес");
+		}
+		else if (18.5 <= bmi && bmi < 24.9)
+		{
+			Console.WriteLine($"bmi={bmi}, результат : норма");
+		}
+		else if (25.0 <= bmi && bmi < 29.9)
+		{
+			Console.WriteLine($"bmi={bmi}, результат : избыточный вес");
+		}
+		else if (bmi >= 30.0)
+		{
+			Console.WriteLine($"bmi={bmi}, результат : ожирение");
 		}
 	}
 	
@@ -54,19 +48,16 @@ class Program
 	
 	static void CheckEvenNumbers(int number)
 	{
-		if (number%2 == 0)
-		{
-			Console.WriteLine($"Число {number} является четным");
-		}
-		else
-		{
-			Console.WriteLine($"Число {number} является нечетным");	
-		}
+		Console.WriteLine(number%2 == 0 ? "Число является четным" : "Число является нечетным");
 	}
 	
 	static void CheckLeapYear(int year)
 	{
-		if (year%4 == 0 && year%100 != 0 || year%400 == 0)
+		if (year%4 == 0 && year%100 != 0)
+		{
+			Console.WriteLine($"Год {year} является високосным");
+		}
+		else if (year%400 == 0)
 		{
 			Console.WriteLine($"Год {year} является високосным");
 		}
