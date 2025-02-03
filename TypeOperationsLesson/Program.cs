@@ -12,6 +12,8 @@ class Program
 		
 		Console.Write("Введите год: ");
 		CheckLeapYear(InputData());
+		
+		ReplaceNumbers(5, 3);
     }
 	
 	static double GetBodyMassIndex(double weight, double height)
@@ -65,5 +67,24 @@ class Program
 		{
 			Console.WriteLine($"Год {year} не является високосным");
 		}
+	}
+	
+	static void ReplaceNumbers(int x1, int y1)
+	{
+		Console.WriteLine($"До замены : x1 = {x1}, y1 = {y1}");
+		
+		/*
+		int z1 = x1;
+		x1 = y1;
+		y1 = z1;
+		*/
+		
+		x1 = x1 + y1;
+		y1 = x1 - y1;
+		x1 = x1 - y1;
+		
+		Console.WriteLine($"После замены : x1 = {x1}, y1 = {y1}");
+		
+			
 	}
 }
