@@ -7,8 +7,8 @@
 ```math
  \begin{matrix}
   p & \bar{p} \\
-  T & F \\
-  F & T
+  1 & 0 \\
+  0 & 1
  \end{matrix}
 ```
 
@@ -17,10 +17,10 @@
 ```math
  \begin{matrix}
   p & q & p \wedge q \\
-  T & T & T\\
-  T & F & F\\
-  F & T & F\\
-  F & F & F
+  0 & 1 & 1\\
+  0 & 0 & 0\\
+  1 & 1 & 0\\
+  1 & 0 & 0
  \end{matrix}
 ```
 
@@ -29,9 +29,9 @@
 ```math
  \begin{matrix}
   p & q & p \wedge q \\
-  T & T & T\\
-  T & F & T\\
-  F & T & T\\
-  F & F & F
+  1 & 1 & 1\\
+  1 & 0 & 1\\
+  0 & 1 & 1\\
+  0 & 0 & 0
  \end{matrix}
 ```
