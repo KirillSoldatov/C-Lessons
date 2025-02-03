@@ -14,6 +14,8 @@ class Program
 		CheckLeapYear(InputData());
 		
 		ReplaceNumbers(5, 3);
+		
+		Console.WriteLine(CheckStepChessKnight((3, 5), (4, 7)));
     }
 	
 	static double GetBodyMassIndex(double weight, double height)
@@ -66,7 +68,7 @@ class Program
 		else
 		{
 			Console.WriteLine($"Год {year} не является високосным");
-		}
+		}	
 	}
 	
 	static void ReplaceNumbers(int first, int second)
@@ -84,5 +86,22 @@ class Program
 		first = first - second;
 		
 		Console.WriteLine($"После замены : first = {first}, second = {second}");
+	}
+	
+	static bool CheckStepChessKnight((int x, int y) firstCoord, (int x, int y) secondCoord)
+	{
+		bool isCorrectFirstCoord = firstCoord.x > 0 && firstCoord.x < 9 &&  firstCoord.y > 0 && firstCoord.y < 9;
+		bool isCorrectSecondCoord = secondCoord.x > 0 && secondCoord.x < 9 &&  secondCoord.y > 0 && secondCoord.y < 9;
+		
+		int firstDiffX = Math.Abs(firstCoord.x - secondCoord.x);
+		int firstDiffY = Math.Abs(firstCoord.y - secondCoord.y);
+		
+		bool isCorrectDiffX = firstDiffX == 1 || firstDiffX == 2;
+		bool isCorrectDiffY = firstDiffY == 1 || firstDiffY == 2;
+		
+		bool isCorrectDiffXY = isCorrectDiffX && isCorrectDiffY && (firstDiffX + firstDiffY) == 3;
+				
+		return isCorrectFirstCoord && isCorrectSecondCoord && isCorrectDiffXY;
+		
 	}
 }
