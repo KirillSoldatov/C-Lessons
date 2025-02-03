@@ -50,16 +50,16 @@ class Program
 	
 	static void CheckEvenNumbers(int number)
 	{
-		Console.WriteLine(number%2 == 0 ? "Число является четным" : "Число является нечетным");
+		Console.WriteLine(number % 2 == 0 ? "Число является четным" : "Число является нечетным");
 	}
 	
 	static void CheckLeapYear(int year)
 	{
-		if (year%4 == 0 && year%100 != 0)
+		if (year % 4 == 0 && year % 100 != 0)
 		{
 			Console.WriteLine($"Год {year} является високосным");
 		}
-		else if (year%400 == 0)
+		else if (year % 400 == 0)
 		{
 			Console.WriteLine($"Год {year} является високосным");
 		}
@@ -69,22 +69,20 @@ class Program
 		}
 	}
 	
-	static void ReplaceNumbers(int x1, int y1)
+	static void ReplaceNumbers(int first, int second)
 	{
-		Console.WriteLine($"До замены : x1 = {x1}, y1 = {y1}");
+		Console.WriteLine($"До замены : first = {first}, second = {second}");
 		
 		/*
-		int z1 = x1;
-		x1 = y1;
-		y1 = z1;
+		int temp = first;
+		first = second;
+		second = temp;
 		*/
 		
-		x1 = x1 + y1;
-		y1 = x1 - y1;
-		x1 = x1 - y1;
+		first = first + second;
+		second = first - second;
+		first = first - second;
 		
-		Console.WriteLine($"После замены : x1 = {x1}, y1 = {y1}");
-		
-			
+		Console.WriteLine($"После замены : first = {first}, second = {second}");
 	}
 }
