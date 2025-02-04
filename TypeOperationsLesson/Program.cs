@@ -5,6 +5,24 @@ class Program
     static void Main(string[] args) 
     {
 		
+		try
+        {
+			Console.Write("Введите сумму вклада в рублях : ");
+			double userDepositAmount = Double.Parse(Console.ReadLine());
+			
+			Console.Write("Введите процентную ставку (годовую) : ");
+			double userInterestRate = Double.Parse(Console.ReadLine());
+			
+			Console.Write("Введите срок вклада в годах : ");
+			double userDepositTime = Double.Parse(Console.ReadLine());
+			
+            CalculateInterestRate(userDepositAmount, userInterestRate, userDepositTime);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+		/*
         try
         {
 			Console.Write("Введите температуру по Цельсию : ");
@@ -17,7 +35,7 @@ class Program
         {
             Console.WriteLine(ex.Message);
         }
-		/*
+		
 		try
 		{
 			Console.WriteLine(Calculate(5, 0, ';'));
@@ -161,4 +179,17 @@ class Program
 		return degreeFahrenheit > 100 ? "Горячо!" : degreeFahrenheit < 32 ? "Холодно!" : "Нейтрально";
     }
 	
+    static void CalculateInterestRate(double value, double rate, double time)
+    {
+        double totalValue = Math.Round(value * Math.Pow((1 + rate / 100), time), 2);
+
+        if (totalValue > 1.5 * totalValue)
+        {
+            Console.WriteLine($"Ваша итоговая суммма составит {totalValue}, Хороший рост!");
+        }
+        else
+        {
+            Console.WriteLine($"Ваша итоговая суммма составит {totalValue}, Рост умеренный!");
+        }
+    }	
 }
