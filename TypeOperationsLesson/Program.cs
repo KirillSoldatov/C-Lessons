@@ -4,6 +4,20 @@ class Program
 {
     static void Main(string[] args) 
     {
+		
+        try
+        {
+			Console.Write("Введите температуру по Цельсию : ");
+			
+			double userDegreeCelsius = Double.Parse(Console.ReadLine());
+			
+            Console.WriteLine(ConvertTemperature(userDegreeCelsius));
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+		/*
 		try
 		{
 			Console.WriteLine(Calculate(5, 0, ';'));
@@ -16,9 +30,9 @@ class Program
 		{
 			Console.WriteLine($"{aEx.Message}");
 		}
-		/*
-		CheckBodyMassIndex(GetBodyMassIndex(75.3, 1.90));
 		
+		CheckBodyMassIndex(GetBodyMassIndex(75.3, 1.90));
+
 		Console.Write("Введите целое число: ");
 		CheckEvenNumbers(InputData());
 		
@@ -139,4 +153,12 @@ class Program
 		}
 		
 	}
+	
+	static string ConvertTemperature(double degreeCelsius)
+    {
+		double degreeFahrenheit = degreeCelsius * 9 / 5 + 32;
+		
+		return degreeFahrenheit > 100 ? "Горячо!" : degreeFahrenheit < 32 ? "Холодно!" : "Нейтрально";
+    }
+	
 }
