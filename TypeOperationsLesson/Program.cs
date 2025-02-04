@@ -4,7 +4,19 @@ class Program
 {
     static void Main(string[] args) 
     {
-
+		try
+		{
+			Console.WriteLine(Calculate(5, 0, ';'));
+		}
+		catch(DivideByZeroException zero)
+		{
+			Console.WriteLine($"{zero.Message}");
+		}
+		catch(ArgumentException aEx)
+		{
+			Console.WriteLine($"{aEx.Message}");
+		}
+		/*
 		CheckBodyMassIndex(GetBodyMassIndex(75.3, 1.90));
 		
 		Console.Write("Введите целое число: ");
@@ -16,6 +28,7 @@ class Program
 		ReplaceNumbers(5, 3);
 		
 		Console.WriteLine(CheckStepChessKnight((3, 5), (4, 7)));
+		*/
     }
 	
 	static double GetBodyMassIndex(double weight, double height)
@@ -46,7 +59,7 @@ class Program
 	
 	static int InputData()
 	{	
-		int userNumber = int.Parse(Console.ReadLine());
+		int userNumber = int.Parse(Console.ReadLine()!);
 		return userNumber;
 	}
 	
@@ -102,6 +115,28 @@ class Program
 		bool isCorrectDiffXY = isCorrectDiffX && isCorrectDiffY && (firstDiffX + firstDiffY) == 3;
 				
 		return isCorrectFirstCoord && isCorrectSecondCoord && isCorrectDiffXY;
+		
+	}
+	
+	static double Calculate(double first, double second, char symbol)
+	{
+		switch(symbol)
+		{
+			case '+':
+				return first + second;
+				
+			case '-':
+				return first - second;
+				
+			case '*':
+				return first * second;
+				
+			case '/':
+				return first / second;
+				
+			default:
+				throw new ArgumentException("Введен недопустимый символ");
+		}
 		
 	}
 }
