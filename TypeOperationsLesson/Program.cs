@@ -4,6 +4,10 @@ class Program
 {
     static void Main(string[] args) 
     {
+		
+		Console.WriteLine(CheckStepChessQueen((4, 6), (4, 1)));
+		
+		/*
 		try
 		{
 			Console.WriteLine(GetDayTime(3));
@@ -12,7 +16,7 @@ class Program
 		{
 				Console.WriteLine(aEx.Message);
 		}
-		/*
+		
 		try
         {
 			Console.Write("Введите сумму вклада в рублях : ");
@@ -67,7 +71,7 @@ class Program
 		
 		ReplaceNumbers(5, 3);
 		
-		Console.WriteLine(CheckStepChessKnight((3, 5), (4, 7)));
+		Console.WriteLine(CheckStepChessKnight((3, 5), (4, 1)));
 		*/
     }
 	
@@ -156,6 +160,20 @@ class Program
 				
 		return isCorrectFirstCoord && isCorrectSecondCoord && isCorrectDiffXY;
 		
+	}
+	
+	static bool CheckStepChessQueen((int x, int y) firstCoord, (int x, int y) secondCoord)
+	{
+		bool isCorrectFirstCoord = firstCoord.x > 0 && firstCoord.x < 9 && firstCoord.y > 0 && firstCoord.y < 9;
+		bool isCorrectSecondCoord = secondCoord.x > 0 && secondCoord.y < 9 && secondCoord.y > 0 && secondCoord.y < 9;
+		
+		int diffXY = secondCoord.x - secondCoord.y;
+		
+		int sumXY = secondCoord.x + secondCoord.y;
+		
+		bool isCorrectXY = (diffXY == 1) || (sumXY == 9) || (firstCoord.x == secondCoord.x) || (firstCoord.y == secondCoord.y);
+		
+		return isCorrectFirstCoord && isCorrectSecondCoord && isCorrectXY;
 	}
 	
 	static double Calculate(double first, double second, char symbol)
