@@ -4,7 +4,15 @@ class Program
 {
     static void Main(string[] args) 
     {
-		
+		try
+		{
+			Console.WriteLine(GetDayTime(3));
+		}
+		catch (ArgumentOutOfRangeException aEx)
+		{
+				Console.WriteLine(aEx.Message);
+		}
+		/*
 		try
         {
 			Console.Write("Введите сумму вклада в рублях : ");
@@ -22,7 +30,7 @@ class Program
         {
             Console.WriteLine(ex.Message);
         }
-		/*
+		
         try
         {
 			Console.Write("Введите температуру по Цельсию : ");
@@ -189,7 +197,31 @@ class Program
         }
         else
         {
-            Console.WriteLine($"Ваша итоговая суммма составит {totalValue}, Рост умеренный!");
+            Console.WriteLine($"Ваша суммма составит {totalValue}, Рост умеренный!");
         }
-    }	
+    }
+
+	static string GetDayTime(int time)
+	{
+		if (6 <= time && time <= 11)
+		{
+			return "Утро";
+		}
+		else if (12 <= time && time <= 17)
+		{
+			return "День";
+		}
+		else if (18 <= time && time <= 21)
+		{
+			return "Вечер";
+		}
+		else if (22 <= time && time <= 5)
+		{
+			return "Ночь";
+		}
+		else
+		{
+			throw new ArgumentOutOfRangeException("Число выходит за пределы 0-23");
+		}
+	}
 }
