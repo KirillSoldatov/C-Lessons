@@ -4,8 +4,9 @@ class Program
 {
     static void Main(string[] args) 
     {
+		Console.WriteLine(GetDayTime(-5));
 		
-		Console.WriteLine(CheckStepChessQueen((4, 6), (4, 1)));
+		//Console.WriteLine(CheckStepChessQueen((4, 6), (4, 1)));
 		
 		/*
 		try
@@ -202,44 +203,40 @@ class Program
     {
 		double degreeFahrenheit = degreeCelsius * 9 / 5 + 32;
 		
-		return degreeFahrenheit > 100 ? "Горячо!" : degreeFahrenheit < 32 ? "Холодно!" : "Нейтрально";
+		return degreeFahrenheit > 100 
+			? "Горячо!"
+			: degreeFahrenheit < 32 
+				? "Холодно!" 
+				: "Нейтрально";
     }
 	
     static void CalculateInterestRate(double value, double rate, double time)
-    {
-        double totalValue = Math.Round(value * Math.Pow((1 + rate / 100), time), 2);
-
-        if (totalValue > 1.5 * totalValue)
-        {
-            Console.WriteLine($"Ваша итоговая суммма составит {totalValue}, Хороший рост!");
-        }
-        else
-        {
-            Console.WriteLine($"Ваша суммма составит {totalValue}, Рост умеренный!");
-        }
-    }
-
-	static string GetDayTime(int time)
 	{
-		if (6 <= time && time <= 11)
+		double totalValue = Math.Round(value * Math.Pow((1 + rate / 100), time), 2);
+
+		if (totalValue > 1.5 * totalValue)
 		{
-			return "Утро";
-		}
-		else if (12 <= time && time <= 17)
-		{
-			return "День";
-		}
-		else if (18 <= time && time <= 21)
-		{
-			return "Вечер";
-		}
-		else if (22 <= time && time <= 5)
-		{
-			return "Ночь";
+			Console.WriteLine($"Ваша итоговая суммма составит {totalValue}, Хороший рост!");
 		}
 		else
 		{
-			throw new ArgumentOutOfRangeException("Число выходит за пределы 0-23");
+			Console.WriteLine($"Ваша суммма составит {totalValue}, Рост умеренный!");
 		}
+	}
+
+	static string GetDayTime(int time)
+	{
+		if (time > 23 || time < 0)
+		{
+			throw new ArgumentOutOfRangeException("Число выходит за пределы 0-23");	
+		}
+
+		return (6 <= time && time <= 11) 
+			? "Утро" 
+			: (12 <= time && time <= 17) 
+				? "День" 
+				: (18 <= time && time <= 21) 
+					? "Вечер" 
+					: "Ночь";
 	}
 }
