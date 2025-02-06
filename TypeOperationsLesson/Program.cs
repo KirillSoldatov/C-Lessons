@@ -2,8 +2,8 @@
 
 class Program
 {
-    static void Main(string[] args) 
-    {
+	static void Main(string[] args) 
+	{
 		Console.WriteLine(GetDayTime(-5));
 		
 		//Console.WriteLine(CheckStepChessQueen((4, 6), (4, 1)));
@@ -19,7 +19,7 @@ class Program
 		}
 		
 		try
-        {
+		{
 			Console.Write("Введите сумму вклада в рублях : ");
 			double userDepositAmount = Double.Parse(Console.ReadLine());
 			
@@ -29,25 +29,25 @@ class Program
 			Console.Write("Введите срок вклада в годах : ");
 			double userDepositTime = Double.Parse(Console.ReadLine());
 			
-            CalculateInterestRate(userDepositAmount, userInterestRate, userDepositTime);
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine(ex.Message);
-        }
+			CalculateInterestRate(userDepositAmount, userInterestRate, userDepositTime);
+		}
+		catch (Exception ex)
+		{
+			Console.WriteLine(ex.Message);
+		}
 		
-        try
-        {
+		try
+		{
 			Console.Write("Введите температуру по Цельсию : ");
 			
 			double userDegreeCelsius = Double.Parse(Console.ReadLine());
 			
             Console.WriteLine(ConvertTemperature(userDegreeCelsius));
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine(ex.Message);
-        }
+		}
+		catch (Exception ex)
+		{
+			Console.WriteLine(ex.Message);
+		}
 		
 		try
 		{
@@ -74,7 +74,7 @@ class Program
 		
 		Console.WriteLine(CheckStepChessKnight((3, 5), (4, 1)));
 		*/
-    }
+	}
 	
 	static double GetBodyMassIndex(double weight, double height)
 	{
@@ -132,13 +132,7 @@ class Program
 	static void ReplaceNumbers(int first, int second)
 	{
 		Console.WriteLine($"До замены : first = {first}, second = {second}");
-		
-		/*
-		int temp = first;
-		first = second;
-		second = temp;
-		*/
-		
+			
 		first = first + second;
 		second = first - second;
 		first = first - second;
@@ -159,8 +153,7 @@ class Program
 		
 		bool isCorrectDiffXY = isCorrectDiffX && isCorrectDiffY && (firstDiffX + firstDiffY) == 3;
 				
-		return isCorrectFirstCoord && isCorrectSecondCoord && isCorrectDiffXY;
-		
+		return isCorrectFirstCoord && isCorrectSecondCoord && isCorrectDiffXY;	
 	}
 	
 	static bool CheckStepChessQueen((int x, int y) firstCoord, (int x, int y) secondCoord)
@@ -200,7 +193,7 @@ class Program
 	}
 	
 	static string ConvertTemperature(double degreeCelsius)
-    {
+	{
 		double degreeFahrenheit = degreeCelsius * 9 / 5 + 32;
 		
 		return degreeFahrenheit > 100 
@@ -208,9 +201,9 @@ class Program
 			: degreeFahrenheit < 32 
 				? "Холодно!" 
 				: "Нейтрально";
-    }
+	}
 	
-    static void CalculateInterestRate(double value, double rate, double time)
+	static void CalculateInterestRate(double value, double rate, double time)
 	{
 		double totalValue = Math.Round(value * Math.Pow((1 + rate / 100), time), 2);
 
