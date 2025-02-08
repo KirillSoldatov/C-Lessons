@@ -4,7 +4,7 @@ class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("Hello, World!");
+        Console.WriteLine(CheckPrimeDividers(729));
     }
 	
 	static ulong GetFactorial(ulong N)
@@ -15,5 +15,27 @@ class Program
 		}
 		return N * GetFactorial(N - 1);
 	}
+	
 	// Содержит ли число только простые делители 3 или 5 - Задача
+	static string CheckPrimeDividers(int value)
+	{	
+		if (value == 1)
+		{
+			return "Содержит";
+		}
+		
+		if (value % 3 == 0)
+		{
+			return CheckPrimeDividers(value / 3);
+		}
+		else if (value % 5 == 0)
+		{
+			return CheckPrimeDividers(value / 5);
+		}
+		else
+		{
+			return "Не содержит";
+		}
+	}
+	
 }
