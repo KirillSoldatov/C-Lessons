@@ -35,7 +35,8 @@ class Program
 	
 	static double Divide(int firstNumber, double secondNumber)
 	{   
-		return secondNumber == 0 ? throw new  ArgumentException() : firstNumber / secondNumber; 
+		return secondNumber == 0 ?
+			throw new  ArgumentException() : firstNumber / secondNumber; 
 	}
 
 	static int RoundAndCheck(double value)
@@ -46,9 +47,8 @@ class Program
 	}
 
 	static long SafeSum(long firstNumber, double secondNumber)
-	{
-		long toLong = checked((long)secondNumber);
-		
-		return firstNumber + toLong <= long.MaxValue ? firstNumber + toLong : throw new OverflowException();
+	{	
+		return long.MaxValue - firstNumber >= (long)secondNumber 
+			? firstNumber + (long)secondNumber : throw new OverflowException();
 	}
 }
