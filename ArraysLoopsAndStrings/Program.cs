@@ -17,11 +17,11 @@ class Program
 	}
 	
 	// Содержит ли число только простые делители 3 или 5 - Задача
-	static string CheckPrimeDividers(int value)
+	static bool CheckPrimeDividers(int value)
 	{	
 		if (value == 1)
 		{
-			return "Содержит";
+			return true;
 		}
 		
 		if (value % 3 == 0)
@@ -34,7 +34,7 @@ class Program
 		}
 		else
 		{
-			return "Не содержит";
+			return false;
 		}
 	}
 	
