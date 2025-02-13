@@ -35,20 +35,24 @@ class Program
 	
 	static double Divide(int firstNumber, double secondNumber)
 	{   
-		return secondNumber == 0 ?
-			throw new  ArgumentException() : firstNumber / secondNumber; 
+		return secondNumber == 0 
+			? throw new  ArgumentException() 
+			: firstNumber / secondNumber; 
 	}
 
 	static int RoundAndCheck(double value)
 	{
 		int result = checked((int)value);
 		
-		return value - result < 0.5 ? result : ++result;
+		return value - result < 0.5 
+			? result 
+			: ++result;
 	}
 
 	static long SafeSum(long firstNumber, double secondNumber)
 	{	
 		return long.MaxValue - firstNumber >= (long)secondNumber 
-			? firstNumber + (long)secondNumber : throw new OverflowException();
+			? firstNumber + (long)secondNumber 
+			: throw new OverflowException();
 	}
 }
