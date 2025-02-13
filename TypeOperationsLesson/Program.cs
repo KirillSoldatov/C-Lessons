@@ -4,7 +4,27 @@ class Program
 {
 	static void Main(string[] args) 
 	{
-		Console.WriteLine(GetDayTime(-5));
+		/*
+		byte a = 4;
+		byte b = (byte)(a + 70);
+		Console.WriteLine(b);
+		*/
+		InputData();
+		InputData();
+		
+		try
+		{	
+			int a = 4;
+			int b = 70;
+			byte c = checked((byte)(a+b));
+			Console.WriteLine(c);  //121
+		}
+		catch (OverflowException ex)
+		{
+			Console.WriteLine(ex.Message);
+		}
+		
+		//Console.WriteLine(GetDayTime(-5));
 		
 		//Console.WriteLine(CheckStepChessQueen((4, 6), (4, 1)));
 		
@@ -104,8 +124,15 @@ class Program
 	
 	static int InputData()
 	{	
-		int userNumber = int.Parse(Console.ReadLine()!);
-		return userNumber;
+		bool checkInput = int.TryParse(Console.ReadLine(), out int userNumber);
+		if (checkInput)
+		{
+			return userNumber;
+		}
+		throw new ArgumentException("Вы ввели не число");
+		
+		//int userNumber = int.Parse(Console.ReadLine()!);
+		//return userNumber;
 	}
 	
 	static void CheckEvenNumbers(int number)
