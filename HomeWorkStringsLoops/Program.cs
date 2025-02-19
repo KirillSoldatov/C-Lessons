@@ -4,45 +4,74 @@ class Program
 {
     static void Main(string[] args)
     {
-		
-		Random rnd = new Random();
-		int randomValue = rnd.Next(1, 101);
 		/*
-		CheckUserNumber(randomValue);
+		CheckUserNumber(53);
 		
 		GetPrimeNumbers(20);
 		
-		GetMedianTemperature();
+		int[] dataTemperature = {-5, 0, 3, -2, 4, -1, 6};
+		Console.WriteLine(GetMedianTemperature(dataTemperature));
 		
 		GetDivisionRemainder();
 		
-		GetStraight();
+		var lineEquations = new (int, int, int)[]
+		{
+			(1, 2, 3),
+			(4, 5, 6),
+			(7, 8, 9),
+			(10, 11, 12),
+		};
 		
-		GetVowelLetters();
+		int[] straightResult = GetStraight(lineEquations);
+		
+		Console.WriteLine(string.Join(", ", straightResult));
+		
+		Console.WriteLine(GetNumberOfVowels(userInput));
+		
+		string userInput = "abcREffffffgggggg";
+		
+		Console.WriteLine(GetString(userInput));
+		
+		string userEmail = " k soldatov,19.94 @gmail,com ";
+		Console.WriteLine(GetCleanedUserEmail(userEmail));
 		*/
-		GetString();
+		string userText = "я пошел гулять и встретил друга по имени балда дурак балда глупый";
+		string censoredText = "";
+		bool isBadWords = BadWordCheck(userText, out censoredText);
 		
-		CheckUserEmail(" k soldatov,19.94 @gmail,com ");
-      
-		BadWordCheck("я пошел гулять и встретил друга по имени балда дурак");
+		Console.WriteLine(isBadWords);
+		Console.WriteLine(censoredText);
     }
 	
+	static int CheckUserInput()
+	{
+		int userValue;
+		
+		while (true)
+		{
+			Console.Write("Введите целое число от 1 до 100: ");
+			
+			string input = Console.ReadLine();
+			
+			if (int.TryParse(input, out userValue))
+			{
+				return userValue;
+			}
+			else
+			{
+				Console.WriteLine("Значение неверно, введите корректное значение");
+			}
+		}
+	}
+	
+	//в оптимистичном сценарии при бинарном поиске количество итераций будет O(log N)
 	static void CheckUserNumber(int randomValue)
 	{	
 		bool isUserGuess = false;
 		
 		while(!isUserGuess)
 		{	
-			Console.Write("Введите целое число от 1 до 100: ");
-			
-			string input = Console.ReadLine();
-			int userValue;
-			
-			if (!int.TryParse(input, out userValue) || userValue < 1 || userValue > 100)
-			{
-				Console.WriteLine("Ошибка! Введите корректное целое число от 1 до 100.");
-				continue;
-			}
+			int userValue = CheckUserInput();
 	
 			if (userValue > randomValue)
 			{
@@ -60,202 +89,169 @@ class Program
 		}
 	}
 	
+	//O(N-2) * O(1) * O(((N+1)/2)-2) *O(1) = O(N) * O(N) = O(N^2). Корректировка - O(N-2) + O(N^2) + O(1) = O(N^2)
 	static void GetPrimeNumbers(int userNumber)
 	{	
-		for (int i = 2; i <= userNumber; i++)
+		for (int i = 2; i <= userNumber; i++) // N-2
 		{
 			bool isPrime = true;
 			
-			for (int j = 2; j < i; j++)
+			for (int j = 2; j < i; j++) //((N+1)/2)-2. Корректировка : (i-2) = N(N+1)/2 => O(N^2)
 			{
-				if (i % j == 0)
+				if (i % j == 0) //O(1)
 				{
 					isPrime = false;
 					break;
 				}
 			}
 			
-			if (isPrime)
+			if (isPrime) //O(1)
 			{
 				Console.Write($"{i}, ");
 			}
 		}
 	}
 	
-	static void GetMedianTemperature()
+	//O(1)+O(N)*O(N)*O(1)=O(N^2+1)=O(N^2). Корректировка : O(N) + O(N^2) + O(1) + O(1) = O(N^2)
+	static double GetMedianTemperature(int[] dataTemperature)
 	{
-		int[] dataTemperature = [-5, 0, 3, -2, 4, -1, 6];
-		
-		for (int i = 0; i < dataTemperature.Length - 1; i++)
+		for (int i = 0; i < dataTemperature.Length - 1; i++) //O(N-1) => O(N)
 		{
 			bool swapped = false;
 			
-			for (int j = 0; j < dataTemperature.Length - i - 1; j++)
+			for (int j = 0; j < dataTemperature.Length - i - 1; j++) //O(((N+1)/2)-1) => O(N). Корректировка : (N-i-1) = N(N+1)/2 => O(N^2)
 			{
-				if (dataTemperature[j] > dataTemperature[j + 1])
+				if (dataTemperature[j] > dataTemperature[j + 1]) // O(2) => O(1)
 				{
-					int temp = dataTemperature[j];
-					dataTemperature[j] = dataTemperature[j + 1];		
-					dataTemperature[j + 1] = temp;
+					(dataTemperature[j], dataTemperature[j + 1]) = (dataTemperature[j + 1], dataTemperature[j]); // O(1)
 					swapped = true;
 				}
 			}
 			
-			if (!swapped)
+			if (!swapped) //O(1)
 			{
 				break;
 			}
 		}
 		
 		int mid = dataTemperature.Length / 2;
-		double median = dataTemperature.Length % 2 == 0
+		
+		return dataTemperature.Length % 2 == 0
 			? (dataTemperature[mid] + dataTemperature[mid - 1]) / 2.0
 			: dataTemperature[mid];
-			
-		Console.WriteLine(median);
 	}
 	
-	static void GetDivisionRemainder()
+	//O(1) + O(N)*O(1)*O(1) + O(1) = O(N)
+	static int GetDivisionRemainder(int[] numbersArr)
 	{
-		int[] numbersArr = new int[100];
-		int divider = 3;
+		int j = 0; // O(1)
 		
-		for (int i = 0; i < numbersArr.Length; i++)
+		while(j < numbersArr.Length) //O(N)
 		{
-			numbersArr[i] = i + 1;
-		}
-		
-		int j = 0;
-		
-		while(j < numbersArr.Length)
-		{
-			if (numbersArr[j] % 3 == 0 && numbersArr[j] % 5 == 0)
+			if (numbersArr[j] % 3 == 0 && numbersArr[j] % 5 == 0) //O(1)
 			{
-				int k = j + 1;
-				
-				while (j < numbersArr.Length)
-				{
-					if (Math.Abs((numbersArr[j] % divider) - (numbersArr[k] % divider)) % 2 == 0)
-					{
-						Console.WriteLine(numbersArr[j]);
-						break;
-					}
-					k++;
-				}
+				j++;//O(1)
 			}
-			j++;
 		}
-	}
-	
-	static void GetStraight()
-	{
-		var lineEquations = new (int, int, int)[]
-		{
-			(1, 2, 3),
-			(4, 5, 6),
-			(7, 8, 9),
-			(10, 11, 12),
-		};
 		
-		foreach (var line in lineEquations)
-		{
-			int straight = line.Item1 + line.Item2 + line.Item3;
-			Console.WriteLine(straight);
-		}
+		return j; //O(1)
 	}
 	
-	static void  GetVowelLetters()
+	//O(N) * O(1) = O(N)
+	static int[] GetStraight((int k, int x, int b)[] lineEquations)
 	{
-		string userInput = "abcREfg";
+		int[] straightLineArr = new int[lineEquations.Length];
+		
+		int i = 0;
+		
+		foreach (var line in lineEquations) //O(N)
+		{
+			int straight = line.k * line.x + line.b; //O(2) => O(1)
+			straightLineArr[i] = straight;
+			i++;
+		}
+		
+		return straightLineArr;
+	}
+	
+	//O(1) + O(N)*(O(N) + O(1)) = O(N^2)
+	static int GetNumberOfVowels(string userInput)
+	{
 		char[] vowelLetters = new char[]{'a', 'e', 'i', 'o', 'u'};
 		
 		int i = 0;
 		
-		foreach (char letter in vowelLetters)
+		string lowerUserInput = userInput.ToLower(); //O(N)
+		
+		foreach (char letter in vowelLetters) //O(N)
 		{
-			if (userInput.ToLower().Contains(letter))
+			if (lowerUserInput.Contains(letter)) //O(N)
 			{
-				++i;
+				++i; //O(1)
 			}
 		}
 		
-		Console.WriteLine(i);
+		return i;
 	}
 	
-	static void GetString()
+	//O(1) + O(N) + O(N^2) + O(N^2) = O(N^2)
+	static string GetString(string userInput)
 	{
-		string userInput = "aaaafweeverrrrrgfdb";
-		char[] userCharArr = userInput.ToCharArray();
+		char[] userCharArr = userInput.ToCharArray(); //O(1)
 		
-		int index = 0;
+		string resultString = ""; //O(1)
 		
-		string resultString = "";
-		
-		for (int i = 0; i < userCharArr.Length; i++)
+		for (int i = 0; i < userCharArr.Length; i++) //O(N)
 		{
-			int j = 0;
+			int j = 0; //O(1)
 			
-			for (; j < i; j++)
+			for (; j < i; j++) //(N-i) = N(N-1)/2 => O(N^2)
 			{
-				if (userCharArr[i] == userCharArr[j])
+				if (userCharArr[i] == userCharArr[j])//O(1)
 				{
 					break;
 				}
 			}
 			
-			if (i == j)
+			if (i == j) //O(1)
 			{
-				resultString += userCharArr[i];
+				resultString += userCharArr[i];//O(N^2)
 			}
 		}
 		
-		Console.WriteLine(resultString);
+		return resultString; //O(1)
 	}
 	
-	static void CheckUserEmail(string userEmail)
+	//O(N) + O(N) + O(N) + O(N) + O(1) + O(1) + O(N) + O(N^2) + O(1) = O(N^2)
+	static string GetCleanedUserEmail(string userEmail)
 	{
-		userEmail = userEmail.Trim().ToLower().Replace(',', '.');
-
-		char[] userEmailToChar = userEmail.ToCharArray();
-
-		int index = 0;
-
-		string cleanedUserEmail = "";
-
-		for (int i = 0; i < userEmailToChar.Length; i++)
-		{
-			if (userEmailToChar[i] == ' ')
-			{
-				continue;
-			}
-
-		cleanedUserEmail += userEmailToChar[i];
-		}
-
-		Console.WriteLine(cleanedUserEmail);
+		return userEmail.Trim().Replace(" ","").ToLower().Replace(',', '.'); //O(N) + O(N) + O(N)
 	}
 	
-	static void BadWordCheck(string userText)
+	//O(1) + O(1) + O(1) * (O(N) + O(N) + O(1)) + O(1) = O(N)
+	static bool BadWordCheck(string userText, out string censoredText)
 	{
-		int counter = 0;
+		bool isBadWords = false; //O(1)
+		censoredText = userText; //O(1)
+		int counter = 0; //O(1)
 
-		var excludes = new[] {"дурак", "балда", "глупый"};
+		var excludes = new[] {"дурак", "балда", "глупый"}; //O(1)
 
-		foreach(var word in excludes)
+		foreach(var word in excludes) //O(1)
 		{
-			if (userText.Contains(word))
+			if (userText.Contains(word)) //O(N)
 			{
-			userText = userText.Replace(word, "***");
-			++counter;
+				censoredText = censoredText.Replace(word, "***"); //O(N)
+				++counter; //O(1)
+				isBadWords = true; //O(1)
 			}
 		}
 
-		if (counter == 3)
+		if (counter == 3) //O(1)
 		{
-			userText = "Администрация решила скрыть данное сообщение";
+			censoredText = "Администрация решила скрыть данное сообщение"; //O(1)
 		}
 
-		Console.WriteLine(userText);
-
+		return isBadWords; //O(1)
 	}
 }
