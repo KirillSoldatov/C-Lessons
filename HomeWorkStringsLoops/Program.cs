@@ -36,8 +36,7 @@ class Program
 		Console.WriteLine(GetCleanedUserEmail(userEmail));
 		*/
 		string userText = "я пошел гулять и встретил друга по имени балда дурак балда глупый";
-		string censoredText = "";
-		bool isBadWords = BadWordCheck(userText, out censoredText);
+		bool isBadWords = BadWordCheck(userText, out string censoredText);
 		
 		Console.WriteLine(isBadWords);
 		Console.WriteLine(censoredText);
