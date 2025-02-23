@@ -2,8 +2,17 @@
 
 class Program
 {
-    static void Main(string[] args)
+    static void Main(string[] args) //string[] args = "1 2 3 4 5 6".Split(); 
     {
+		int arrLength = new int[]{1, 2, 3}.Length;
+		Console.WriteLine(arrLength);
+		
+		string[] args2 = "1 2 3 4 5 6".Split();
+		Console.WriteLine(string.Join(':', args2));
+		for (int i = 0; i < args2.Length; i++)
+		{
+			Console.WriteLine(args2[i]);
+		}
 		/*
 		CheckUserNumber(53);
 		
