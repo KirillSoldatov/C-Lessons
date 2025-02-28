@@ -4,16 +4,22 @@ class Program
 {
     static void Main(string[] args)
     {
-		int[] arr = {5, 2, 9, 7, 3, 8, 10};
+		//int[] arr = {5, 2, 9, 7, 3, 8, 10};
 		//BubbleSort(arr);
 		//ShakerSort(arr);
         //Console.WriteLine(string.Join(", ", arr));
 		//BubbleSortSecondVersion(arr);
 		//ShakerSortSecondVersion(arr);
 		//CombSort(arr);
-		InserionSort(arr);
-		Console.WriteLine(string.Join(", ", arr));
+		//InserionSort(arr);
+		//Console.WriteLine(string.Join(", ", arr));
 		
+		//Console.WriteLine(GetFrogWaysCount(10));
+		int[,] wayMap = { {0, 1, 2, 4, 5, 6}, {3, 4, 5, 6, 7, 8}, {3, 4, 5, 1, 2, 3} };
+		
+		
+		//Console.WriteLine(GetShortDistance(new int[]{5, 2, 9, 7, 3, 8, 10}));
+		Console.WriteLine(GetShortDistanceDog(wayMap));
     }
 	//O(N^2)
 	static void BubbleSort(int[] arrInput)
@@ -153,5 +159,82 @@ class Program
 			
 			initialArr[j + 1] = temp;
 		}
+	}
+	
+	static int GetFrogWaysCount(int grasshopperDestination)
+	{
+		int[] wayMap = new int[grasshopperDestination];
+		
+		wayMap[0] = 1;
+		wayMap[1] = 1;
+		
+		if (grasshopperDestination <= 1)
+		{
+			return 1;
+		}
+		
+		for (int i = 2; i < grasshopperDestination; i++)
+		{
+			wayMap[i] = wayMap[i - 1] + wayMap[i - 2];
+		}
+		
+		return wayMap[^1];
+	}
+	
+	static int GetShortDistance(int[] wayMap)
+	{
+		if (wayMap.Length == 0)
+		{
+			return 0;
+		}
+		
+		if (wayMap.Length == 1)
+		{
+			return wayMap[0];
+		}
+		
+		if (wayMap.Length == 2)
+		{
+			return Math.Min(wayMap[0], wayMap[1]);
+		}
+		
+		for (int i = 2; i < wayMap.Length; i++)
+		{
+			wayMap[i] += Math.Min(wayMap[i - 1], wayMap[i - 2]);
+		}
+		
+		return wayMap[^1];
+	}
+	
+	static int GetShortDistanceDog(int[,] wayMap)
+	{
+		int row = wayMap.GetUpperBound(0);
+		int column = wayMap.GetUpperBound(1);
+		
+		for (int i = 0; i <= row; i++)
+		{
+			for (int j = 0; j <= column; j++)
+			{
+				if (i == 0 && j == 0)
+				{
+					continue;
+				}
+				
+				if (j == 0)
+				{
+					wayMap[i, j] += wayMap[i - 1, j];
+					continue;
+				}
+			
+				if (i == 0)
+				{
+					wayMap[i, j] += wayMap[i, j - 1];
+					continue;
+				}
+				
+				wayMap[i, j] += Math.Min(wayMap[i - 1, j], wayMap[i, j - 1]); 
+			}
+		}
+		return wayMap[row, column];
 	}
 }
