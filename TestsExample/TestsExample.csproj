@@ -15,11 +15,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CheckPointProcedureProgramming\CheckPointProcedureProgramming.csproj" />
+    <Using Include="Xunit" />
   </ItemGroup>
 
   <ItemGroup>
-    <Using Include="Xunit" />
+    <ProjectReference Include="..\HomeWorkProcedureProgram\HomeWorkProcedureProgram.csproj" />
   </ItemGroup>
 
 </Project>
