@@ -1,6 +1,6 @@
 ﻿namespace HomeWorkProcedureProgram;
 
-class Program
+public class Program
 {
     public static void Main(string[] args)
     {
@@ -194,6 +194,10 @@ class Program
     // Задача 4. Решение задачи через объявление строки
     public static string[] GetSummaryRange(int[] numberArr)
     {
+        if (numberArr.Length == 0)
+        {
+            return new string[0];
+        }
         string range = numberArr[0].ToString();
 		
         for (int i = 0; i < numberArr.Length - 1; i++)
@@ -203,19 +207,14 @@ class Program
                 continue;
             }
 
-            if (range == numberArr[i].ToString())
-            {
-                range += ", " + numberArr[i + 1].ToString();
-            }
-            else
-            {
-                range += "->" + numberArr[i].ToString() + ", " + numberArr[i + 1].ToString();
-            }
+            range = range == numberArr[i].ToString() 
+                ? $"{range},  {numberArr[i + 1].ToString()}" 
+                : $"{range} -> {numberArr[i].ToString()},  {numberArr[i + 1].ToString()}";
         }
 		
         if (range[^1].ToString() != numberArr[^1].ToString())
         {
-            range += "->" + numberArr[^1];
+            range = $"{range} -> {numberArr[^1]}";
         }
         
         string[] summaryRange = range.Split(", ");
