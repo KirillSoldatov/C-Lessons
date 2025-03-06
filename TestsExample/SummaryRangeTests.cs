@@ -26,6 +26,7 @@ namespace TestsExample
             //Assert
             Assert.Equal(oneStringArray, summaryRange);
         }
+
         [Fact]
         public void Summary_Range_With_Two_Values_Should_Be_Two_Elements_And_One_Range()
         {
