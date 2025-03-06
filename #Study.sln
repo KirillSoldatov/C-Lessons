@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeWorkProcedureProgram", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OOPPrinciples", "OOPPrinciples\OOPPrinciples.csproj", "{252C90EF-CF15-41A5-B76C-C312E7AFA11F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CurrencyLibrary", "CurrencyLibrary\CurrencyLibrary.csproj", "{11D5EDD5-BECA-4C85-A3AB-7AC8F0320E67}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,6 +77,10 @@ Global
 		{252C90EF-CF15-41A5-B76C-C312E7AFA11F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{252C90EF-CF15-41A5-B76C-C312E7AFA11F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{252C90EF-CF15-41A5-B76C-C312E7AFA11F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11D5EDD5-BECA-4C85-A3AB-7AC8F0320E67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11D5EDD5-BECA-4C85-A3AB-7AC8F0320E67}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11D5EDD5-BECA-4C85-A3AB-7AC8F0320E67}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11D5EDD5-BECA-4C85-A3AB-7AC8F0320E67}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

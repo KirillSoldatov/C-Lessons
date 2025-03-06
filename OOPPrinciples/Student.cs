@@ -1,20 +1,34 @@
+using CurrencyLibrary;
+
 namespace OOPPrinciples;
 
-public class Student
+public class Student: People
 {
-    private string _fullName;
     private int _age;
-    private TypeOfStudy _typeOfStudy;
+    private CurrencyConverter _currencyConverter = new CurrencyConverter();
+    public TypeOfStudy TypeOfStudy { private get; set; }
 
-    public Student(string fullName, int age, TypeOfStudy typeOfStudy)
+    private decimal _grant;
+    public decimal Grant
     {
-        _fullName = fullName;
-        _age = age;
-        _typeOfStudy = typeOfStudy;
+        get
+        {
+            return _currencyConverter.ConverterToUsd(_grant, CurrencyHelper.Eur);
+        }
+        private set
+        {
+            _grant = value;
+        }
+    }
+
+    public Student(string fullName, int age, TypeOfStudy typeOfStudy, Sex sex) : base(fullName, age, sex)
+    {
+        TypeOfStudy = typeOfStudy;
+        _grant = 500;
     }
 
     public void Introduce()
     {
-        Console.WriteLine($"Full name : {_fullName}, age : {_age}, type of study : {_typeOfStudy}");
+        Console.WriteLine($"Full name : {FullName}, age : {_age}, type of study : {TypeOfStudy}");
     }
 }
