@@ -15,5 +15,14 @@ class Program
         student.Introduce();
         
         Console.WriteLine(student.Grant);
+        
+        student.Say();
+        
+        student.Eat();
+
+        ((IMoveable)student).Move();
+
+        Student copyStudent = (Student)student.Clone();
+        copyStudent.Introduce();
     }
 }

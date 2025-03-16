@@ -4,6 +4,7 @@ public class CurrencyConverter
 {
     private const int CourseRubToUsd = 100;
     private const int CourseRubToEur = 105;
+    protected int coefficient = 0;
 
     private const int CourseUsdToRub = 97;
     private const int CourseEurToRub = 102;
